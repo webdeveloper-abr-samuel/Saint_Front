@@ -1,12 +1,10 @@
-# Saint_Front
-
-#Run the Project
+# Run the Project
 1 - clone the repository
 2 - npm install --force
 3 - npm run android or npx react-native run-android
 
 
-#for create apk
+# for create apk
 1 - create of keystore  =>  keytool -genkey -v -keystore your_key_name.keystore -alias your_key_alias -keyalg RSA -keysize 2048 -validity 10000
 
 2 - copy the file (your_key_name.keystore) to the folder /android/app 
