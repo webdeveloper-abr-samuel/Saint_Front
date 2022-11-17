@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Text, View, Pressable, TextInput, ScrollView, PermissionsAndroid } from 'react-native';
+import { Text, View, Pressable, TextInput, ScrollView, PermissionsAndroid, AsyncStorage } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import RadioButton from '../Layouts/redioButton'
 import Geolocation from 'react-native-geolocation-service';
@@ -139,6 +139,11 @@ export default function App(props) {
      }
 
      const save = async () => {
+          let country = await AsyncStorage.getItem('country');
+          let savedBy = await AsyncStorage.getItem('usuario')
+          let jsonSaved  = JSON.parse(savedBy)
+          let userEcuador = jsonSaved[0].ID3;
+          let saved = country == 1 ? savedBy : userEcuador;
           let value = {
                idCliente: id,
                distribuidor: distributor,
@@ -148,7 +153,7 @@ export default function App(props) {
                noVenta: socialClass,
                obsVenta: observation,
                prodAbrVen: fixOfProdAbrVen(),
-               savedby: "thernandez",
+               savedBy: saved,
                taskID: 0,
                valorPedido: 0,
                vendedor: seller,

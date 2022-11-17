@@ -79,7 +79,7 @@ export default function App() {
                 let totalD = text * obj.cantidad || 1
                 return { ...obj, total: totalD, precioUnit: text, cantidad: obj.cantidad || 1 }
               }
-              if (ind == 1 && obj.precioUnit > 0) {
+              if (ind == 1) {
                 let totalD = text * obj.precioUnit || 1
                 return { ...obj, total: totalD, cantidad: text, precioUnit: obj.precioUnit }
               }

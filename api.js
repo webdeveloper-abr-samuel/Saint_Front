@@ -165,11 +165,15 @@ export class Requests {
     }
 
     DailySummary = async () => {
-        let guardadoPor= await AsyncStorage.getItem('usuario');
+        let country = await AsyncStorage.getItem('country');
+        let savedBy = await AsyncStorage.getItem('usuario');
+        let jsonSaved = JSON.parse(savedBy)
+        let userEcuador = jsonSaved[0].ID3;
+        let saved = country == 1 ? savedBy : userEcuador;
         let fechaInicial = moment().format("YYYY/MM/DD") + ' 00:00:00';
         let fechaFinal = moment().format("YYYY/MM/DD") + ' 23:59:59';
         let values = {
-            guardadoPor,
+            guardadoPor: saved,
             fechaInicial,
             fechaFinal
         }
@@ -182,15 +186,19 @@ export class Requests {
     }
 
     WeekSummary = async () => {
+        let country = await AsyncStorage.getItem('country');
+        let savedBy = await AsyncStorage.getItem('usuario')
+        let jsonSaved = JSON.parse(savedBy)
+        let userEcuador = jsonSaved[0].ID3;
+        let saved = country == 1 ? savedBy : userEcuador;
         let currentDate = moment();
         let weekStart = currentDate.clone().startOf('isoWeek');
         let monday = moment(weekStart).add(0, 'days').format("YYYY-MM-DD");
         let friday = moment(weekStart).add(4, 'days').format("YYYY-MM-DD");
-        let guardadoPor= await AsyncStorage.getItem('usuario');
         let fechaInicial = monday + ' 00:00:00';
         let fechaFinal = friday + ' 23:59:59';
         let values = {
-            guardadoPor,
+            guardadoPor: saved,
             fechaInicial,
             fechaFinal
         }
@@ -210,5 +218,4 @@ export class Requests {
             console.log(error);
         }
     }
-
 }

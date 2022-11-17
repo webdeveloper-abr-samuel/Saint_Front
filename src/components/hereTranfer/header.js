@@ -74,7 +74,11 @@ export default function App(props) {
      }
 
      const save = async () => {
-          let savedBy = await AsyncStorage.getItem('usuario')
+          let country = await AsyncStorage.getItem('country');
+          let savedBy = await AsyncStorage.getItem('usuario');
+          let jsonSaved  = JSON.parse(savedBy)
+          let userEcuador = jsonSaved[0].ID3;
+          let saved = country == 1 ? savedBy : userEcuador;
           let listaProdAbraVen = [
                'Lija de Agua Abracol',
                'Lija de Agua Omega',
@@ -171,7 +175,7 @@ export default function App(props) {
                nit: nit,
                Latitude: lat,
                Longitude: lng,
-               savedBy,
+               savedBy: saved,
                imgRuta: metodology,
                taskID: "0",
                form: "app-ecuador-peru",

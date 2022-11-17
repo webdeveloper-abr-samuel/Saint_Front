@@ -125,7 +125,7 @@ class App extends Component {
             <TouchableOpacity style={styles.touch} onPress={this.login}>
               <Text style={styles.btnText}>Iniciar Sesión</Text>
             </TouchableOpacity>
-            <Text>Sistemas Pedidos Abracol V.1.6</Text>
+            <Text>Sistemas Pedidos Abracol V.1.7</Text>
           </View>
         </SafeAreaView>
       </>

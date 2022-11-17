@@ -14,6 +14,7 @@ export default function App({ navigation: { navigate } }) {
      };
 
      const searchFilter = async (text = {}) => {
+          setDistributor();
           try {
                setSearch(text);
                const newData = await petitions.getClients(text);
@@ -23,9 +24,7 @@ export default function App({ navigation: { navigate } }) {
           }
      };
 
-     useEffect(() => {
-          loadDistributor();
-     });
+     useEffect(() => { loadDistributor(); },[]);
 
      const pressHandler = (data) => {
           navigate('Menu Cliente', { Data: data })
